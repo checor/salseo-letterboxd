@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h3 class="text-center my-3">Salseo Letterboxd</h3>
+<p class="text-center my-3">Descubre que películas amas y tu amigx odia, ¡y que se arme el salseo!</p>
+<form method="post"  hx-post="versus" hx-target="#results" class="row g-3 row-cols-md-auto justify-content-center" hx-indicator="#spinner">
+    <div class="col-12">
+        <input type="text" class="form-control" name="user1" placeholder="Tu nombre de usuario" value="{{user1 if user1}}" required>
+    </div>
+    <div class="col-12">
+        <input type="text" class="form-control" name="user2" placeholder="Tu amigx" value="{{user2 if user2}}" required>
+    </div>
+    <div class="col-12">
+        <button id="button" name="default" class="btn btn-primary">¡Versus!</button>
+    </div>
+</form>
+<div id="results" class="my-3">
+    <div id="spinner" class="text-center htmx-indicator">
+        <div class="spinner-border" role="status"></div>
+        <p>Haciendola de pedo...</p>
+    </div>
+</div>
+{% if user1 and user2 %}
+<script>
+window.onload = function () { document.getElementById("button").click(); };
+</script>
+{% endif %}
+{% endblock %}
